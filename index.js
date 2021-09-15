@@ -4,13 +4,20 @@ const ejse = require('ejs-electron')
 const {app, BrowserWindow, ipcMain} = electron;
 const isDev = require('electron-is-dev');
 
+global.isDev = isDev;
+global.appRoot = path.resolve(__dirname);
+global.userData = isDev ? (appRoot + '/scratch') : (app.getPath('userData') + "/scratch");
+global.cookiesData = isDev ? (appRoot + '/cookies') : (app.getPath('userData') + "/cookies");
+global.tmpData = isDev ? (appRoot + '/tmp') : (app.getPath('temp') + "/captchasolver");
+global.version = app.getVersion();
+
 let mainWindow;
 
 // The BrowserWindow will be ready when electron is ready
 app.on("ready", () => {
     mainWindow = new BrowserWindow({
-        width: 1400,
-        height: 800,
+        width: 1000,
+        height: 600,
         maxWidth: 1400,
         maxHeight: 800,
         show: true,
@@ -23,16 +30,7 @@ app.on("ready", () => {
         }
     });
 
-    /*var current_user = getCurrentUser();
-    if (current_user) {
-        renderStores();
-    } else {
-        renderLogin();
-    }*/
     renderHome();
-
-    //require('./app/menu');
-    //defaultInitializers();
 
     mainWindow.on('close', (event) => {
         if (app.quitting) {
@@ -44,7 +42,6 @@ app.on("ready", () => {
         }
     });
     mainWindow.webContents.on('did-finish-load', () => {
-        //autoUpdater.init(mainWindow)
     })
 });
 
@@ -66,6 +63,6 @@ renderHome = async () => {
     try {
         await mainWindow.loadURL('file:///' + __dirname + '/app/views/home.ejs')
     } catch (e) {
-        //handleErrors(e);
+        console.log(e);
     }
 }

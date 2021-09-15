@@ -1,0 +1,36 @@
+.text-success {
+  color: #92c755 !important;
+}
+.bg-success {
+  background-color: #92c755 !important;
+}
+.alert-success {
+  background-color: #92c755 !important;
+}
+.badge-success {
+  background-color: #92c755 !important;
+}
+
+.btn-success {
+  background-color: #92c755 !important;
+  border-color: #92c755 !important;
+}
+.btn-success:focus, .btn-success:hover {
+  border-color: #92c755 !important;
+  box-shadow: 0px 1px 15px rgba(146, 199, 85, 0.4) !important;
+}
+
+
+.navbar-rounded {
+  padding: 15px 25px 15px 25px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+body {
+  background-color: #202529;
+}
+
+.circle-round {
+  border-radius: 25px !important;
+}
